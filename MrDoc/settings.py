@@ -345,3 +345,14 @@ if extend_root_txt == []:
     EXTEND_ROOT_TXT = extend_root_txt
 else:
     EXTEND_ROOT_TXT = extend_root_txt.split(',')
+
+# 在 MIDDLEWARE 列表中，'django.middleware.security.SecurityMiddleware' 之后添加：
+# 'whitenoise.middleware.WhiteNoiseMiddleware',
+
+# 在 settings.py 末尾添加：
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# 允许 Render 域名访问
+ALLOWED_HOSTS = ['*']
